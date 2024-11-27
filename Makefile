@@ -6,7 +6,7 @@ include Platforms/$(PLATFORM).mk
 
 FLAGS = PLATFORM=$(PLATFORM)
 
-.PHONY: all clean ./Browser ./Library ./Parser
+.PHONY: all format clean ./Browser ./Library ./Parser
 
 all: ./Browser ./Library ./Parser
 
@@ -15,6 +15,9 @@ all: ./Browser ./Library ./Parser
 
 ./Browser:: ./Library ./Parser
 	$(MAKE) -C $@ $(FLAGS)
+
+format:
+	clang-format --verbose -i `find . -name "*.c" -or -name "*.h"`
 
 clean:
 	$(MAKE) -C ./Browser $(FLAGS) clean
