@@ -6,6 +6,6 @@ YFLAGS = -y -d
 LEX = lex
 LFLAGS =
 CC = cc
-CFLAGS = -std=c99 -D_DEFAULT_SOURCE
+CFLAGS = -std=c99 -D_DEFAULT_SOURCE -I ../Library -I ../Library
 LDFLAGS =
 LIBS =

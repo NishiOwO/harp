@@ -10,7 +10,10 @@ FLAGS = PLATFORM=$(PLATFORM)
 
 all: ./Browser ./Library ./Parser
 
-./Browser ./Library ./Parser::
+./Library ./Parser::
+	$(MAKE) -C $@ $(FLAGS)
+
+./Browser:: ./Library ./Parser
 	$(MAKE) -C $@ $(FLAGS)
 
 clean:
