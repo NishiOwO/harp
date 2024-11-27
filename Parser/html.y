@@ -17,34 +17,38 @@ int yyerror(const char*);
 %union {
 }
 
-%token TEXT NOSPACE_TEXT DELIM SYMBOL
+%token NOSPACE_TEXT DELIM SYMBOL
 %start list
 
 %%
 
-list        :   part
-            |   list part;
+list		: part
+		| list part;
 
-part        :   tag
-            |   text
-            |   SYMBOL;
-    
-tag         :   starttag
-            |   endtag;
+part		: tag
+		| text
+		| SYMBOL;
 
-text        :   TEXT
-            |   NOSPACE_TEXT
-            |   DELIM;
+tag		: starttag
+		| selftag
+		| endtag;
 
-starttag    :   '<' NOSPACE_TEXT '>'
-            |   '<' NOSPACE_TEXT attr_list '>';
+text		: NOSPACE_TEXT
+		| DELIM;
 
-attr_list   :   attr
-            |   attr_list DELIM attr;
+selftag		: '<' NOSPACE_TEXT '/' '>'
+		| '<' NOSPACE_TEXT DELIM '/' '>';
 
-attr        :   NOSPACE_TEXT
-            |   NOSPACE_TEXT '=' NOSPACE_TEXT;
+starttag	: '<' NOSPACE_TEXT '>'
+		| '<' NOSPACE_TEXT DELIM '>'
+		| '<' NOSPACE_TEXT DELIM attr_list '>';
 
-endtag  :   '<' '/' NOSPACE_TEXT '>';
+attr_list	: attr
+		| attr_list DELIM attr;
+
+attr		: NOSPACE_TEXT
+		| NOSPACE_TEXT '=' NOSPACE_TEXT;
+
+endtag		:   '<' '/' NOSPACE_TEXT '>';
 
 %%

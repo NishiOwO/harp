@@ -29,10 +29,6 @@ int yyerror(const char* str){
     return SYMBOL;
 }
 
-([^\<\>&]+) {
-    return TEXT;
-}
-
 . {
     return yytext[0];
 }
