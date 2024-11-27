@@ -1,4 +1,4 @@
-/* $Id$ */
+/* $Id: main.c 7 2024-11-27 18:58:45Z nishi $ */
 
 #include <stdio.h>
 #include <string.h>

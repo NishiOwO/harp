@@ -1,9 +1,9 @@
 # $Id$
 
-OBJS = main.o
-STATIC = ../Library/string.a ../Parser/parser.a
-
 include ../Platforms/$(PLATFORM).mk
+
+OBJS = main.o gui_$(GUI).o
+STATIC = ../Library/string.a ../Parser/parser.a
 
 .PHONY: all clean
 .SUFFIXES: .c .o
