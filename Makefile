@@ -1,10 +1,11 @@
 # $Id$
 
+TOPDIR = .
 PLATFORM = generic
 
 include Platforms/$(PLATFORM).mk
 
-FLAGS = PLATFORM=$(PLATFORM)
+FLAGS = PLATFORM=$(PLATFORM) TOPDIR=..
 
 .PHONY: all format clean ./Browser ./Library ./Parser
 
