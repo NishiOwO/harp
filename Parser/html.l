@@ -15,15 +15,32 @@ int yyerror(const char* str){
 }
 %}
 
+%x STR
+
 %%
 
 (<\!--.*?-->) ;
+
+\" {
+	BEGIN(STR);
+}
+
+<STR>[^\\"]* {
+}
+
+<STR>\\. {
+}
+
+<STR>\" {
+	BEGIN(0);
+	return STRING;
+}
 
 ([ \t\r\n]+) {
     return DELIM;
 }
 
-([^ /\t\r\n\<\>&]+) {
+([^ /\t\r\n\<\>&"]+) {
     return NOSPACE_TEXT;
 }
 

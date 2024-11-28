@@ -17,7 +17,7 @@ int yyerror(const char*);
 %union {
 }
 
-%token NOSPACE_TEXT DELIM SYMBOL
+%token NOSPACE_TEXT DELIM SYMBOL STRING
 %start list
 
 %%
@@ -38,6 +38,7 @@ text		: text_repeat
 
 text_repeat	: NOSPACE_TEXT
 		| DELIM
+		| STRING
 		| '/';
 
 selftag		: '<' NOSPACE_TEXT '/' '>'
