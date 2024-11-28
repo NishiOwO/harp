@@ -33,8 +33,12 @@ tag		: starttag
 		| selftag
 		| endtag;
 
-text		: NOSPACE_TEXT
-		| DELIM;
+text		: text_repeat
+		| text text_repeat;
+
+text_repeat	: NOSPACE_TEXT
+		| DELIM
+		| '/';
 
 selftag		: '<' NOSPACE_TEXT '/' '>'
 		| '<' NOSPACE_TEXT DELIM '/' '>';
@@ -46,8 +50,8 @@ starttag	: '<' NOSPACE_TEXT '>'
 attr_list	: attr
 		| attr_list DELIM attr;
 
-attr		: NOSPACE_TEXT
-		| NOSPACE_TEXT '=' NOSPACE_TEXT;
+attr		: text
+		| NOSPACE_TEXT '=' text;
 
 endtag		:   '<' '/' NOSPACE_TEXT '>';
 

@@ -17,11 +17,13 @@ int yyerror(const char* str){
 
 %%
 
+(<\!--.*?-->) ;
+
 ([ \t\r\n]+) {
     return DELIM;
 }
 
-([^ \t\r\n\<\>&]+) {
+([^ /\t\r\n\<\>&]+) {
     return NOSPACE_TEXT;
 }
 
