@@ -9,11 +9,15 @@
 #include <Xm/MainW.h>
 #include <Xm/Form.h>
 
+#include "../Images/harp.xbm"
+
 Widget top;
 Widget main_window;
 Widget form;
 Widget url_label;
 Widget url;
+
+Pixmap harp;
 
 XtAppContext ctx;
 extern int argc;
@@ -26,6 +30,7 @@ int harp_gui_init(void) {
 		fprintf(stderr, "Failed to create the main window\n");
 		return 1;
 	}
+	harp = XCreateBitmapFromData(XtDisplay(top), DefaultRootWindow(XtDisplay(top)), (char*)harp_bits, harp_width, harp_height);
 	main_window = XtVaCreateManagedWidget("MainWindow", xmMainWindowWidgetClass, top, NULL);
 	form = XmVaCreateForm(main_window, "Form", NULL);
 	XtManageChild(form);
