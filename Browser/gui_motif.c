@@ -13,7 +13,7 @@
 #include <Xm/PushB.h>
 #include <Xm/ScrolledW.h>
 
-#include "../Images/harp.xbm"
+#include "../Image/harp.xbm"
 
 Widget top;
 Widget main_window;
