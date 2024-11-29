@@ -3,7 +3,7 @@
 TOPDIR = .
 PLATFORM = generic
 
-include Platforms/$(PLATFORM).mk
+include Platform/$(PLATFORM).mk
 
 FLAGS = PLATFORM=$(PLATFORM) TOPDIR=..
 

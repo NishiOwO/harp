@@ -2,7 +2,7 @@
 
 STRING = String/strcat.o String/strdup.o
 
-include ../Platforms/$(PLATFORM).mk
+include ../Platform/$(PLATFORM).mk
 
 .PHONY: all clean
 .SUFFIXES: .c .o

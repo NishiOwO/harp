@@ -1,6 +1,6 @@
 # $Id$
 
-include ../Platforms/$(PLATFORM).mk
+include ../Platform/$(PLATFORM).mk
 
 .PHONY: all clean
 .SUFFIXES: .c .o

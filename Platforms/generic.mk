@@ -10,4 +10,4 @@ LFLAGS =
 CC = cc
 CFLAGS = -std=c99 -D_DEFAULT_SOURCE -I ../Library -I .
 LDFLAGS =
-LIBS = -lXm
+LIBS = -lX11 -lXt -lXm
