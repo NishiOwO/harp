@@ -3,7 +3,7 @@
 include ../Platform/$(PLATFORM).mk
 
 OBJS = main.o gui_$(GUI).o
-STATIC = ../Library/string.a ../Parser/parser.a
+STATIC = ../Library/string.a ../Parser/parser.a ../Contrib/*/*.o
 
 .PHONY: all clean
 .SUFFIXES: .c .o
