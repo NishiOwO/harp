@@ -10,4 +10,4 @@ all: ./SQLite
 	$(MAKE) -C $@ $(FLAG)
 
 clean:
-	$(MAKE) -C ./Sqlite $(FLAG)
+	$(MAKE) -C ./SQLite $(FLAG)
