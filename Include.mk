@@ -1,3 +1,3 @@
 # $Id$
 
-INCLUDES = -I ../Library -I . -I ../Contrib/SQLite
+INCLUDES = -I ../Library -I . -I ../Contrib/SQLite -I ../Contrib/IJG
