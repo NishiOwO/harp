@@ -2,5 +2,5 @@
 
 include $(TOPDIR)/Platform/generic.mk
 
-CFLAGS += -I /usr/pkg/include -I /usr/X11R7/include
+CFLAGS += -I /usr/pkg/include -I /usr/X11R7/include -I /usr/X11R7/include/freetype2
 LDFLAGS += -L /usr/pkg/lib -L /usr/X11R7/lib -Wl,-R/usr/pkg/lib -Wl,-R/usr/X11R7/lib
