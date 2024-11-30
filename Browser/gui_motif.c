@@ -15,6 +15,7 @@
 #include <Xm/ScrolledW.h>
 #include <Xm/MessageB.h>
 
+#include "harp_db.h"
 #include "harp_version.h"
 
 #include "../Image/harp.xbm"
