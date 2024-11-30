@@ -11,6 +11,6 @@ YFLAGS = -y -d
 LEX = lex
 LFLAGS =
 CC = cc
-CFLAGS = -std=c99 -D_DEFAULT_SOURCE $(INCLUDES) $(OPTIMIZE)
+CFLAGS = -std=c99 -D_DEFAULT_SOURCE $(INCLUDES) $(OPTIMIZE) `pkg-config --cflags xft`
 LDFLAGS = $(OPTIMIZE)
 LIBS = -lX11 -lXm -lXt -lXft -lpthread
