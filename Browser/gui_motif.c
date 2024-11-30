@@ -40,12 +40,21 @@ struct fonts {
 	XftFont* header5;
 	XftFont* header6;
 	XftFont* font;
+	XftFont* fixed;
 };
 
 struct fonts fonts;
 
 #define SET_FONT(target, font) \
 	if(font != NULL) { \
+		Arg table_arg[2]; \
+		XmRendition table_rendition; \
+		XmRenderTable font_table; \
+		XtSetArg(table_arg[0], XmNfontType, XmFONT_IS_XFT); \
+		XtSetArg(table_arg[1], XmNxftFont, font); \
+		table_rendition = XmRenditionCreate(target, XmFONTLIST_DEFAULT_TAG, table_arg, 2); \
+		font_table = XmRenderTableAddRenditions(NULL, &table_rendition, 1, XmMERGE_REPLACE); \
+		XtVaSetValues(target, XmNrenderTable, font_table, NULL); \
 	}
 
 void harp_info(Widget w, void* pointer, void* data) {
@@ -65,6 +74,7 @@ void harp_info(Widget w, void* pointer, void* data) {
 	XtSetArg(args[n], XmNnoResize, True);
 	n++;
 	dialog = XmCreateMessageDialog(top, "info", args, n);
+	SET_FONT(XmMessageBoxGetChild(dialog, XmDIALOG_OK_BUTTON), fonts.font);
 	XtUnmanageChild(XmMessageBoxGetChild(dialog, XmDIALOG_CANCEL_BUTTON));
 	XtUnmanageChild(XmMessageBoxGetChild(dialog, XmDIALOG_HELP_BUTTON));
 	verform = XmVaCreateForm(dialog, "verform", NULL);
@@ -90,10 +100,14 @@ int harp_gui_init(void) {
 		fprintf(stderr, "Failed to create the main window\n");
 		return 1;
 	}
+	fonts.header1 = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Times:style=bold:size=22");
+	fonts.font = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Times:size=10");
+	fonts.fixed = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Courier:size=10");
 	harp = XCreateBitmapFromData(XtDisplay(top), DefaultRootWindow(XtDisplay(top)), (char*)harp_bits, harp_width, harp_height);
 	main_window = XtVaCreateManagedWidget("MainWindow", xmMainWindowWidgetClass, top, NULL);
 	form = XmVaCreateForm(main_window, "Form", NULL);
 	url = XmVaCreateText(form, "URL", XmNtopAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_FORM, XmNrightAttachment, XmATTACH_WIDGET, NULL);
+	SET_FONT(url, fonts.fixed);
 	XtManageChild(url);
 	logo_button = XmVaCreatePushButton(form, "Logo", XmNlabelType, XmPIXMAP, XmNlabelPixmap, harp, XmNrightAttachment, XmATTACH_FORM, XmNtopAttachment, XmATTACH_FORM, XmNheight, 64 + 24, XmNwidth, 64 + 24, NULL);
 	XtAddCallback(logo_button, XmNactivateCallback, harp_info, NULL);
