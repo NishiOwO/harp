@@ -1,5 +1,6 @@
 # $Id$
 
+include $(TOPDIR)/Include.mk
 include $(TOPDIR)/Platform/generic.mk
 
 GUI = gdi

@@ -1,5 +1,6 @@
 # $Id$
 
+include $(TOPDIR)/Include.mk
 include $(TOPDIR)/Platform/generic.mk
 
 CFLAGS += -I /usr/pkg/include -I /usr/X11R7/include

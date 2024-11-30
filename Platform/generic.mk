@@ -1,5 +1,7 @@
 # $Id$
 
+include $(TOPDIR)/Include.mk
+
 GUI = motif
 
 AR = ar
@@ -8,6 +10,6 @@ YFLAGS = -y -d
 LEX = lex
 LFLAGS =
 CC = cc
-CFLAGS = -std=c99 -D_DEFAULT_SOURCE -I ../Library -I .
+CFLAGS = -std=c99 -D_DEFAULT_SOURCE $(INCLUDES)
 LDFLAGS =
 LIBS = -lX11 -lXm -lXt -lXft -lpthread
