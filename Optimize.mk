@@ -1,3 +1,3 @@
 # $Id$
 
-OPTIMIZE = -O2
+#OPTIMIZE = -O2
