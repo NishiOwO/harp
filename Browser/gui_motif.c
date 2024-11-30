@@ -44,7 +44,9 @@ struct fonts {
 
 struct fonts fonts;
 
-#define SET_FONT(target,font) {}
+#define SET_FONT(target, font) \
+	if(font != NULL) { \
+	}
 
 void harp_info(Widget w, void* pointer, void* data) {
 	Arg args[5];
@@ -58,36 +60,18 @@ void harp_info(Widget w, void* pointer, void* data) {
 	XmString message = XmStringCreateLocalized("Harp WWW Browser");
 	XmString verstr = XmStringCreateLocalized("Version " HARP_VERSION);
 	n = 0;
-	XtSetArg(args[n], XmNdialogTitle, title); n++;
-	XtSetArg(args[n], XmNnoResize, True); n++;
+	XtSetArg(args[n], XmNdialogTitle, title);
+	n++;
+	XtSetArg(args[n], XmNnoResize, True);
+	n++;
 	dialog = XmCreateMessageDialog(top, "info", args, n);
 	XtUnmanageChild(XmMessageBoxGetChild(dialog, XmDIALOG_CANCEL_BUTTON));
 	XtUnmanageChild(XmMessageBoxGetChild(dialog, XmDIALOG_HELP_BUTTON));
 	verform = XmVaCreateForm(dialog, "verform", NULL);
-	icon = XmVaCreateLabel(verform, "infoicon",
-		XmNlabelType, XmPIXMAP,
-		XmNlabelPixmap, harp,
-		XmNtopAttachment, XmATTACH_FORM,
-		XmNbottomAttachment, XmATTACH_FORM,
-		XmNleftAttachment, XmATTACH_FORM,
-	NULL);
-	label = XmVaCreateLabel(verform, "infomsg",
-		XmNlabelString, message,
-		XmNtopAttachment, XmATTACH_FORM,
-		XmNleftAttachment, XmATTACH_WIDGET,
-		XmNleftWidget, icon,
-		XmNrightAttachment, XmATTACH_FORM,
-	NULL);
+	icon = XmVaCreateLabel(verform, "infoicon", XmNlabelType, XmPIXMAP, XmNlabelPixmap, harp, XmNtopAttachment, XmATTACH_FORM, XmNbottomAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_FORM, NULL);
+	label = XmVaCreateLabel(verform, "infomsg", XmNlabelString, message, XmNtopAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_WIDGET, XmNleftWidget, icon, XmNrightAttachment, XmATTACH_FORM, NULL);
 	SET_FONT(label, fonts.header1);
-	version = XmVaCreateLabel(verform, "infover",
-		XmNlabelString, verstr,
-		XmNtopAttachment, XmATTACH_WIDGET,
-		XmNtopWidget, label,
-		XmNleftAttachment, XmATTACH_WIDGET,
-		XmNleftWidget, icon,
-		XmNrightAttachment, XmATTACH_FORM,
-		XmNalignment, XmALIGNMENT_BEGINNING,
-	NULL);
+	version = XmVaCreateLabel(verform, "infover", XmNlabelString, verstr, XmNtopAttachment, XmATTACH_WIDGET, XmNtopWidget, label, XmNleftAttachment, XmATTACH_WIDGET, XmNleftWidget, icon, XmNrightAttachment, XmATTACH_FORM, XmNalignment, XmALIGNMENT_BEGINNING, NULL);
 	SET_FONT(version, fonts.font);
 	XtManageChild(version);
 	XtManageChild(label);
