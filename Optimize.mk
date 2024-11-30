@@ -1,0 +1,3 @@
+# $Id$
+
+OPTIMIZE = -O2
