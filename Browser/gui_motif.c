@@ -21,7 +21,6 @@
 #include "harp_version.h"
 
 #include "../Image/harp.xbm"
-#include "../Image/harp_mask.xbm"
 
 extern cJSON* json;
 
