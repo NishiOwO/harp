@@ -10,7 +10,7 @@ include ../Platform/$(PLATFORM).mk
 all: string.a
 
 string.a: $(STRING)
-	ar rcs $@ $(STRING)
+	$(AR) rcs $@ $(STRING)
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<

@@ -15,10 +15,14 @@
 #include <Xm/ScrolledW.h>
 #include <Xm/MessageB.h>
 
-#include "harp_db.h"
+#include <cJSON.h>
+
+#include "harp_string.h"
 #include "harp_version.h"
 
 #include "../Image/harp.xbm"
+
+extern cJSON* json;
 
 Widget top;
 Widget main_window;
@@ -34,12 +38,7 @@ extern int argc;
 extern char** argv;
 
 struct fonts {
-	XftFont* header1;
-	XftFont* header2;
-	XftFont* header3;
-	XftFont* header4;
-	XftFont* header5;
-	XftFont* header6;
+	XftFont* header[6];
 	XftFont* font;
 	XftFont* fixed;
 };
@@ -81,7 +80,7 @@ void harp_info(Widget w, void* pointer, void* data) {
 	verform = XmVaCreateForm(dialog, "verform", NULL);
 	icon = XmVaCreateLabel(verform, "infoicon", XmNlabelType, XmPIXMAP, XmNlabelPixmap, harp, XmNtopAttachment, XmATTACH_FORM, XmNbottomAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_FORM, NULL);
 	label = XmVaCreateLabel(verform, "infomsg", XmNlabelString, message, XmNtopAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_WIDGET, XmNleftWidget, icon, XmNrightAttachment, XmATTACH_FORM, NULL);
-	SET_FONT(label, fonts.header1);
+	SET_FONT(label, fonts.header[0]);
 	version = XmVaCreateLabel(verform, "infover", XmNlabelString, verstr, XmNtopAttachment, XmATTACH_WIDGET, XmNtopWidget, label, XmNleftAttachment, XmATTACH_WIDGET, XmNleftWidget, icon, XmNrightAttachment, XmATTACH_FORM, XmNalignment, XmALIGNMENT_BEGINNING, NULL);
 	SET_FONT(version, fonts.font);
 	XtManageChild(version);
@@ -94,16 +93,70 @@ void harp_info(Widget w, void* pointer, void* data) {
 	XmStringFree(title);
 }
 
+int harp_gui_json(void) {
+	cJSON* fjson;
+	if(cJSON_GetObjectItemCaseSensitive(json, "fonts") == NULL) {
+		cJSON_AddItemToObject(json, "fonts", cJSON_CreateObject());
+	}
+	fjson = cJSON_GetObjectItemCaseSensitive(json, "fonts");
+	if(cJSON_GetObjectItemCaseSensitive(fjson, "default") == NULL) {
+		cJSON* name = cJSON_CreateString("Helvetica");
+		cJSON_AddItemToObject(fjson, "default", cJSON_CreateArray());
+		cJSON_AddItemToArray(cJSON_GetObjectItemCaseSensitive(fjson, "default"), name);
+	}
+	if(cJSON_GetObjectItemCaseSensitive(fjson, "serif") == NULL) {
+		cJSON* name = cJSON_CreateString("Times");
+		cJSON_AddItemToObject(fjson, "serif", cJSON_CreateArray());
+		cJSON_AddItemToArray(cJSON_GetObjectItemCaseSensitive(fjson, "serif"), name);
+	}
+	if(cJSON_GetObjectItemCaseSensitive(fjson, "sans-serif") == NULL) {
+		cJSON* name = cJSON_CreateString("Helvetica");
+		cJSON_AddItemToObject(fjson, "sans-serif", cJSON_CreateArray());
+		cJSON_AddItemToArray(cJSON_GetObjectItemCaseSensitive(fjson, "sans-serif"), name);
+	}
+	if(cJSON_GetObjectItemCaseSensitive(fjson, "monospace") == NULL) {
+		cJSON* name = cJSON_CreateString("Courier");
+		cJSON_AddItemToObject(fjson, "monospace", cJSON_CreateArray());
+		cJSON_AddItemToArray(cJSON_GetObjectItemCaseSensitive(fjson, "monospace"), name);
+	}
+	if(cJSON_GetObjectItemCaseSensitive(fjson, "size") == NULL) {
+		cJSON_AddItemToObject(fjson, "size", cJSON_CreateNumber(10));
+	}
+	return 0;
+}
+
 int harp_gui_init(void) {
+	char font[128];
+	int i;
+	cJSON* fjson = cJSON_GetObjectItemCaseSensitive(json, "fonts");
+	cJSON* fname;
+	cJSON* fquery;
 	XInitThreads();
 	top = XtVaAppInitialize(&ctx, "Harp", NULL, 0, &argc, argv, NULL, XtNtitle, "Harp", NULL);
 	if(top == NULL) {
 		fprintf(stderr, "Failed to create the main window\n");
 		return 1;
 	}
-	fonts.header1 = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Times:style=bold:size=22");
-	fonts.font = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Times:size=10");
-	fonts.fixed = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Courier:size=10");
+	for(i = 0; i < 6; i++) {
+		fquery = cJSON_GetObjectItemCaseSensitive(fjson, "default");
+		cJSON_ArrayForEach(fname, fquery) {
+			sprintf(font, "%s:style=bold:size=%d", fname->valuestring, (5 - i) * 2 + 10);
+			fonts.header[i] = XftFontOpenName(XtDisplay(top), DefaultScreen(top), font);
+			if(fonts.header[i] != NULL) break;
+		}
+	}
+	fquery = cJSON_GetObjectItemCaseSensitive(fjson, "default");
+	cJSON_ArrayForEach(fname, fquery) {
+		sprintf(font, "%s:size=10", fname->valuestring);
+		fonts.font = XftFontOpenName(XtDisplay(top), DefaultScreen(top), font);
+		if(fonts.font != NULL) break;
+	}
+	fquery = cJSON_GetObjectItemCaseSensitive(fjson, "monospace");
+	cJSON_ArrayForEach(fname, fquery) {
+		sprintf(font, "%s:size=10", fname->valuestring);
+		fonts.fixed = XftFontOpenName(XtDisplay(top), DefaultScreen(top), "Courier:size=10");
+		if(fonts.fixed != NULL) break;
+	}
 	harp = XCreateBitmapFromData(XtDisplay(top), DefaultRootWindow(XtDisplay(top)), (char*)harp_bits, harp_width, harp_height);
 	main_window = XtVaCreateManagedWidget("MainWindow", xmMainWindowWidgetClass, top, NULL);
 	form = XmVaCreateForm(main_window, "Form", NULL);
