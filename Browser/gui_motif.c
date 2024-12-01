@@ -21,6 +21,7 @@
 #include "harp_version.h"
 
 #include "../Image/harp.xbm"
+#include "../Image/harp_mask.xbm"
 
 extern cJSON* json;
 
@@ -158,6 +159,9 @@ int harp_gui_init(void) {
 		if(fonts.fixed != NULL) break;
 	}
 	harp = XCreateBitmapFromData(XtDisplay(top), DefaultRootWindow(XtDisplay(top)), (char*)harp_bits, harp_width, harp_height);
+
+	XtVaSetValues(top, XmNiconPixmap, harp, NULL);
+
 	main_window = XtVaCreateManagedWidget("MainWindow", xmMainWindowWidgetClass, top, NULL);
 	form = XmVaCreateForm(main_window, "Form", NULL);
 	url = XmVaCreateText(form, "URL", XmNtopAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_FORM, XmNrightAttachment, XmATTACH_WIDGET, NULL);
