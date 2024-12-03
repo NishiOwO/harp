@@ -3,13 +3,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 #ifdef __MINGW32__
 #include <windows.h>
 #else
 #include <pwd.h>
 #include <unistd.h>
-#include <sys/stat.h>
 #endif
 
 #include <cJSON.h>
