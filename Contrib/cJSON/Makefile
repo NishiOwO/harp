@@ -7,7 +7,7 @@ OBJS = cJSON.o
 .PHONY: all
 .SUFFIXES: .c .o
 
-all: ./libcJSON.a
+all: libcJSON.a
 
 libcJSON.a: $(OBJS)
 	$(AR) rcs $@ $(OBJS)

@@ -7,7 +7,7 @@ OBJS = adler32.o compress.o crc32.o deflate.o gzclose.o gzlib.o gzread.o gzwrite
 .PHONY: all
 .SUFFIXES: .c .o
 
-all: ./libz.a
+all: libz.a
 
 libz.a: $(OBJS)
 	$(AR) rcs $@ $(OBJS)

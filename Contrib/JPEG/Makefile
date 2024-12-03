@@ -7,7 +7,7 @@ OBJS = cdjpeg.o ckconfig.o jaricom.o jcapimin.o jcapistd.o jcarith.o jccoefct.o 
 .PHONY: all
 .SUFFIXES: .c .o
 
-all: ./libjpeg.a
+all: libjpeg.a
 
 libjpeg.a: $(OBJS)
 	$(AR) rcs $@ $(OBJS)

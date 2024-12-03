@@ -7,7 +7,7 @@ OBJS = png.o pngerror.o pngget.o pngmem.o pngpread.o pngread.o pngrio.o pngrtran
 .PHONY: all
 .SUFFIXES: .c .o
 
-all: ./libpng.a
+all: libpng.a
 
 libpng.a: $(OBJS)
 	$(AR) rcs $@ $(OBJS)
