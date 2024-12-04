@@ -1,12 +1,12 @@
-Harp Installation Instructions                              
-                 IINNSSTTAALLLLAATTIIOONN IINNSSTTRRUUCCTTIIOONNSS
+Harp Installation Instructions
+		 INSTALLATION INSTRUCTIONS
 
-RReeqquuiirreemmeennttss
+Requirements
 
 To install this version of Harp, you will need a Unix system
 with X11, and Motif (confirmed to be working on 2.3.8).
 
-The current version has been tested on  the  following  sys‐
+The current version has been tested on	the  following	sys‐
 tems:
 
  NetBSD (amd64 10.0)
