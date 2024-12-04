@@ -20,6 +20,7 @@
 #include "harp_string.h"
 #include "harp_version.h"
 
+#include "../Image/harp.mask.xbm"
 #include "../Image/harp.xbm"
 
 extern cJSON* json;
@@ -32,6 +33,7 @@ Widget logo_button;
 Widget scrolled_window;
 
 Pixmap harp;
+Pixmap harp_mask;
 
 XtAppContext ctx;
 extern int argc;
@@ -156,8 +158,10 @@ int harp_gui_init(void) {
 		if(fonts.fixed != NULL) break;
 	}
 	harp = XCreateBitmapFromData(XtDisplay(top), DefaultRootWindow(XtDisplay(top)), (char*)harp_bits, harp_width, harp_height);
+	harp_mask = XCreateBitmapFromData(XtDisplay(top), DefaultRootWindow(XtDisplay(top)), (char*)harp_mask_bits, harp_mask_width, harp_mask_height);
 
 	XtVaSetValues(top, XmNiconPixmap, harp, NULL);
+	XtVaSetValues(top, XmNiconMask, harp_mask, NULL);
 
 	main_window = XtVaCreateManagedWidget("MainWindow", xmMainWindowWidgetClass, top, NULL);
 	form = XmVaCreateForm(main_window, "Form", NULL);
