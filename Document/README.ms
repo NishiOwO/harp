@@ -2,9 +2,13 @@
 .rj
 Harp Installation Instructions
 .ce
-\fBINSTALLATION INSTRUCTIONS\fP
+.ft B
+INSTALLATION INSTRUCTIONS
+.ft R
 .sp
-\fBRequirements\fP
+.ft B
+Requirements
+.ft R
 .sp
 To install this version of Harp, you will need a Unix system with X11, and Motif (confirmed to be working on 2.3.8).
 .sp
