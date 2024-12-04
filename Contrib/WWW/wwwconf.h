@@ -614,7 +614,7 @@
 #undef WWWLIB_SIG
 
 /* Enable POSIX */
-#define _POSIX_SOURCE
+#undef _POSIX_SOURCE
 #define _POSIX_
 
 /* Define to 1 if type `char' is unsigned and you are not using gcc.  */
