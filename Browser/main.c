@@ -70,9 +70,9 @@ int main(int _argc, char** _argv) {
 	fclose(config);
 	free(path);
 	free(confpath);
+	HTSetTraceMessageMask("sop");
 	HTEventInit();
 	HTLibInit("Harp", HARP_VERSION);
-	HTSetTraceMessageMask("sop");
 	HTTransportInit();
 	HTProtocolInit();
 	HTSSLhttps_init(TRUE);

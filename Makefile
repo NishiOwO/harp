@@ -1,20 +1,20 @@
 # $Id$
 
 TOPDIR = .
-PLATFORM = generic
+PLATFORM = unix
 
 include Platform/$(PLATFORM).mk
 
 FLAGS = PLATFORM=$(PLATFORM) TOPDIR=..
 
-.PHONY: all format clean ./Browser ./Library ./Parser
+.PHONY: all format clean ./Browser ./Library
 
-all: ./Browser ./Library ./Parser ./Contrib
+all: ./Browser ./Library ./Contrib
 
-./Library ./Parser ./Contrib::
+./Library ./Contrib::
 	$(MAKE) -C $@ $(FLAGS)
 
-./Browser:: ./Library ./Parser ./Contrib
+./Browser:: ./Library ./Contrib
 	$(MAKE) -C $@ $(FLAGS)
 	@echo "*** Welcome to Harp."
 
@@ -25,4 +25,3 @@ clean:
 	$(MAKE) -C ./Browser $(FLAGS) clean
 	$(MAKE) -C ./Contrib $(FLAGS) clean
 	$(MAKE) -C ./Library $(FLAGS) clean
-	$(MAKE) -C ./Parser $(FLAGS) clean
