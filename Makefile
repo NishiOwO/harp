@@ -16,6 +16,7 @@ all: ./Browser ./Library ./Parser ./Contrib
 
 ./Browser:: ./Library ./Parser ./Contrib
 	$(MAKE) -C $@ $(FLAGS)
+	@echo "*** Welcome to Harp."
 
 format:
 	clang-format --verbose -i `find Browser Library Parser "(" -name "*.c" -or -name "*.h" ")" -and -not -name "y.tab.c" -and -not -name "y.tab.h" -and -not -name "lex.yy.c"`
