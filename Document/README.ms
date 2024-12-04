@@ -38,7 +38,7 @@
 .	sp
 ..
 .ll 6.5in
-.pl 11in
+.pl 110in
 .po 1c
 .sp |0
 .in 0.25in
@@ -79,3 +79,64 @@ https://github.com/nishiowo/harp
 .sp
 using Git.
 .NS "Building"
+There are only way to build Harp for now, simply run:
+.in +1in
+.sp
+make
+.sp
+.in -1in
+or run below if you want to cross-compile for Windows 32-bit:
+.in +1in
+.sp
+make PLATFORM=win32
+.sp
+.in -1in
+for 64-bit:
+.in +1in
+.sp
+make PLATFORM=win64
+.sp
+.in -1in
+.NS "Used libraries"
+Libwww - the W3C Protocol Library
+.in +1in
+.sp
+https://www.w3.org/Library
+.sp
+.in -1in
+GIFLIB
+.in +1in
+.sp
+https://sourceforge.net/projects/giflib
+.sp
+.in -1in
+The Independent JPEG Group's JPEG software
+.in +1in
+.sp
+https://ijg.org/
+.sp
+.in -1in
+OpenSSL
+.in +1in
+.sp
+https://openssl-library.org/
+.sp
+.in -1in
+libpng
+.in +1in
+.sp
+http://www.libpng.org/pub/png/libpng.html
+.sp
+.in -1in
+zlib
+.in +1in
+.sp
+https://zlib.net/
+.sp
+.in -1in
+cJSON
+.in +1in
+.sp
+https://github.com/DaveGamble/cJSON
+.sp
+.in -1in

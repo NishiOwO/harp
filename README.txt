@@ -35,3 +35,47 @@
 
 
     Building
+
+      There are only way to build Harp for now, simply run:
+
+		make
+
+      or run below if you want to cross‐compile for Windows 32‐bit:
+
+		make PLATFORM=win32
+
+      for 64‐bit:
+
+		make PLATFORM=win64
+
+
+
+    Used libraries
+
+      Libwww ‐ the W3C Protocol Library
+
+		https://www.w3.org/Library
+
+      GIFLIB
+
+		https://sourceforge.net/projects/giflib
+
+      The Independent JPEG Group’s JPEG software
+
+		https://ijg.org/
+
+      OpenSSL
+
+		https://openssl‐library.org/
+
+      libpng
+
+		http://www.libpng.org/pub/png/libpng.html
+
+      zlib
+
+		https://zlib.net/
+
+      cJSON
+
+		https://github.com/DaveGamble/cJSON
