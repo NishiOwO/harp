@@ -1,7 +1,8 @@
 .\" $Id$
-.rj
+.ad r
 Harp Installation Instructions
 .ce
+.ad l
 .ft B
 INSTALLATION INSTRUCTIONS
 .ft R
