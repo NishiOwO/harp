@@ -66,7 +66,7 @@
 
       OpenSSL
 
-		https://openssl‐library.org/
+		https://openssl−library.org/
 
       libpng
 

@@ -119,7 +119,7 @@ https://ijg.org/
 OpenSSL
 .in +1in
 .sp
-https://openssl-library.org/
+https://openssl\-library.org/
 .sp
 .in -1in
 libpng
