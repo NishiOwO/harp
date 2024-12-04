@@ -13,6 +13,8 @@
 #endif
 
 #include <WWWLib.h>
+#include <WWWHTTP.h>
+#include <WWWInit.h>
 
 #include <cJSON.h>
 
@@ -67,7 +69,15 @@ int main(int _argc, char** _argv) {
 	fclose(config);
 	free(path);
 	free(confpath);
+	HTEventInit();
 	HTLibInit("Harp", HARP_VERSION);
+	HTTransportInit();
+	HTProtocolInit();
+	HTNetInit();
+	HTFileInit();
+	HTMIMEInit();
+	HTIconInit(NULL);
+	HTAlertInit();
 	argc = _argc;
 	argv = _argv;
 	for(i = 1; i < argc; i++) {
