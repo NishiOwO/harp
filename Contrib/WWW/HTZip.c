@@ -15,7 +15,6 @@
 #include "HTZip.h"					 /* Implemented here */
 
 #ifdef WWW_MSWINDOWS
-#define ZLIB_DLL
 #endif
 
 #include <zlib.h>
