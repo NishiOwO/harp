@@ -11,7 +11,7 @@ STATIC = ../Library/string.a ../Parser/parser.a ../Contrib/*/*.a
 all: harp$(EXEC)
 
 harp$(EXEC): $(OBJS) $(STATIC)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(STATIC) $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) ../Library/string.a ../Parser/parser.a $(LIBS)
 
 .c.o:
 	$(CC) -DHAVE_CONFIG_H $(CFLAGS) -c -o $@ $<

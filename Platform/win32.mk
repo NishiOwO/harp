@@ -7,8 +7,8 @@ GUI = gdi
 AR = i686-w64-mingw32-ar
 CC = i686-w64-mingw32-gcc
 
-CFALGS += -I $(TOPDIR)/Contrib/OpenSSL/include
+CFLAGS += -I $(TOPDIR)/Contrib/OpenSSL/include
 LDFLAGS += -L $(TOPDIR)/Contrib/OpenSSL/lib32
-LIBS = -lgdi32 -lwsock32 -lssl -lcrypto
+LIBS = -lgdi32 -lcJSON -lpng -ljpeg -lgif -lz -lwww -lssl -lcrypto -lwsock32 -lws2_32
 
 EXEC = .exe
