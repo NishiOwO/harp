@@ -2,11 +2,11 @@
 
 FLAG=PLATFORM=$(PLATFORM) TOPDIR=../..
 
-.PHONY: all clean ./JPEG ./ZLib ./PNG ./GIF ./cJSON
+.PHONY: all clean ./JPEG ./ZLib ./PNG ./GIF ./cJSON ./WWW
 
-all: ./JPEG ./ZLib ./PNG ./GIF ./cJSON
+all: ./JPEG ./ZLib ./PNG ./GIF ./cJSON ./WWW
 
-./JPEG ./ZLib ./PNG ./GIF ./cJSON::
+./JPEG ./ZLib ./PNG ./GIF ./cJSON ./WWW::
 	$(MAKE) -C $@ $(FLAG)
 
 clean:
@@ -15,3 +15,4 @@ clean:
 	$(MAKE) -C ./GIF $(FLAG) clean
 	$(MAKE) -C ./cJSON $(FLAG) clean
 	$(MAKE) -C ./ZLib $(FLAG) clean
+	$(MAKE) -C ./WWW $(FLAG) clean

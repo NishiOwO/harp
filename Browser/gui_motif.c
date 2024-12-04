@@ -38,7 +38,7 @@ extern int argc;
 extern char** argv;
 
 struct fonts {
-	XftFont* header[6];
+	XftFont* big;
 	XftFont* font;
 	XftFont* fixed;
 };
@@ -80,7 +80,7 @@ void harp_info(Widget w, void* pointer, void* data) {
 	verform = XmVaCreateForm(dialog, "verform", NULL);
 	icon = XmVaCreateLabel(verform, "infoicon", XmNlabelType, XmPIXMAP, XmNlabelPixmap, harp, XmNtopAttachment, XmATTACH_FORM, XmNbottomAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_FORM, NULL);
 	label = XmVaCreateLabel(verform, "infomsg", XmNlabelString, message, XmNtopAttachment, XmATTACH_FORM, XmNleftAttachment, XmATTACH_WIDGET, XmNleftWidget, icon, XmNrightAttachment, XmATTACH_FORM, NULL);
-	SET_FONT(label, fonts.header[0]);
+	SET_FONT(label, fonts.big);
 	version = XmVaCreateLabel(verform, "infover", XmNlabelString, verstr, XmNtopAttachment, XmATTACH_WIDGET, XmNtopWidget, label, XmNleftAttachment, XmATTACH_WIDGET, XmNleftWidget, icon, XmNrightAttachment, XmATTACH_FORM, XmNalignment, XmALIGNMENT_BEGINNING, NULL);
 	SET_FONT(version, fonts.font);
 	XtManageChild(version);
@@ -137,13 +137,11 @@ int harp_gui_init(void) {
 		fprintf(stderr, "Failed to create the main window\n");
 		return 1;
 	}
-	for(i = 0; i < 6; i++) {
-		fquery = cJSON_GetObjectItemCaseSensitive(fjson, "default");
-		cJSON_ArrayForEach(fname, fquery) {
-			sprintf(font, "%s:style=bold:size=%d", fname->valuestring, (5 - i) * 2 + 10);
-			fonts.header[i] = XftFontOpenName(XtDisplay(top), DefaultScreen(top), font);
-			if(fonts.header[i] != NULL) break;
-		}
+	fquery = cJSON_GetObjectItemCaseSensitive(fjson, "default");
+	cJSON_ArrayForEach(fname, fquery) {
+		sprintf(font, "%s:style=bold:size=%d", fname->valuestring, 5 * 2 + 10);
+		fonts.big = XftFontOpenName(XtDisplay(top), DefaultScreen(top), font);
+		if(fonts.big != NULL) break;
 	}
 	fquery = cJSON_GetObjectItemCaseSensitive(fjson, "default");
 	cJSON_ArrayForEach(fname, fquery) {
