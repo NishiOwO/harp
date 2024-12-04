@@ -12,8 +12,11 @@
 #include <unistd.h>
 #endif
 
+#include <WWWLib.h>
+
 #include <cJSON.h>
 
+#include "harp_version.h"
 #include "harp_string.h"
 
 cJSON* json;
@@ -64,6 +67,7 @@ int main(int _argc, char** _argv) {
 	fclose(config);
 	free(path);
 	free(confpath);
+	HTLibInit("Harp", HARP_VERSION);
 	argc = _argc;
 	argv = _argv;
 	for(i = 1; i < argc; i++) {
@@ -81,5 +85,7 @@ int main(int _argc, char** _argv) {
 		}
 	}
 	if((st = harp_gui_init())) return st;
-	return harp_gui_loop();
+	st = harp_gui_loop();
+	HTLibTerminate();
+	return st;
 }

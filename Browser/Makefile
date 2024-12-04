@@ -11,10 +11,10 @@ STATIC = ../Library/string.a ../Parser/parser.a ../Contrib/*/*.a
 all: harp$(EXEC)
 
 harp$(EXEC): $(OBJS) $(STATIC)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS) $(STATIC)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(STATIC) $(LIBS)
 
 .c.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) -DHAVE_CONFIG_H $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -f harp harp.exe *.o

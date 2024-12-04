@@ -7,6 +7,6 @@ GUI = gdi
 AR = x86_64-w64-mingw32-ar
 CC = x86_64-w64-mingw32-gcc
 
-LIBS = -lgdi32
+LIBS = -lgdi32 -lws2_32
 
 EXEC = .exe
