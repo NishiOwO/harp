@@ -71,6 +71,7 @@ int main(int _argc, char** _argv) {
 	free(confpath);
 	HTEventInit();
 	HTLibInit("Harp", HARP_VERSION);
+	HTSetTraceMessageMask("sop");
 	HTTransportInit();
 	HTProtocolInit();
 	HTNetInit();

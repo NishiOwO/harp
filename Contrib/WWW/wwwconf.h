@@ -475,7 +475,7 @@
 #undef HT_EXT
 
 /* Define to enable MD5 for HTTP access authentication. */
-#undef HT_MD5
+#define HT_MD5
 
 /* Define to enable MUX as HTTP transport */
 #undef HT_MUX
@@ -496,7 +496,7 @@
 #undef HT_REENTRANT
 
 /* Define to enable ssl transport. */
-#undef HT_SSL
+#define HT_SSL
 
 /* Define to enable Zlib compression / decompression support. */
 #define HT_ZLIB
