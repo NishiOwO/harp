@@ -15,6 +15,7 @@
 #include <WWWLib.h>
 #include <WWWHTTP.h>
 #include <WWWInit.h>
+#include <WWWSSL.h>
 
 #include <cJSON.h>
 
@@ -74,6 +75,7 @@ int main(int _argc, char** _argv) {
 	HTSetTraceMessageMask("sop");
 	HTTransportInit();
 	HTProtocolInit();
+	HTSSLhttps_init(TRUE);
 	HTNetInit();
 	HTFileInit();
 	HTMIMEInit();
