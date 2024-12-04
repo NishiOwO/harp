@@ -47,7 +47,7 @@
 .ad r
 Harp Installation Instructions
 .ce
-.ad b
+.ad l
 .t2 "INSTALLATION INSTRUCTIONS"
 .NS "Requirements"
 To install this version of Harp, you will need a Unix system with X11,
