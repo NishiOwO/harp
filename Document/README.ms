@@ -101,13 +101,13 @@ make PLATFORM=win64
 Libwww - the W3C Protocol Library
 .in +1in
 .sp
-https://www.w3.org/Library
+https://www.w3.org/Library/
 .sp
 .in -1in
 GIFLIB
 .in +1in
 .sp
-https://sourceforge.net/projects/giflib
+https://sourceforge.net/projects/giflib/
 .sp
 .in -1in
 The Independent JPEG Group's JPEG software

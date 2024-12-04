@@ -54,11 +54,11 @@
 
       Libwww ‐ the W3C Protocol Library
 
-		https://www.w3.org/Library
+		https://www.w3.org/Library/
 
       GIFLIB
 
-		https://sourceforge.net/projects/giflib
+		https://sourceforge.net/projects/giflib/
 
       The Independent JPEG Group’s JPEG software
 
